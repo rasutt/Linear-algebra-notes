@@ -1,0 +1,80 @@
+---
+title: "Linear algebra notes"
+author: "Robin Aldridge-Sutton"
+date: "`r Sys.Date()`"
+output:
+  pdf_document: default
+  html_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Linear Algebra and Its Applications by Gilbert Strang (1976)
+
+### Preface
+
+- Teaching of LA has become too abstract.
+
+### 1 Gaussian Elimination
+
+#### 1.1 Introduction
+
+- Central problem of LA is solving simultaneous linear equations
+- Start with n by n systems as simplest and most important
+- Two algorithms taught in high school, elimination and Cramer's rule
+- In elimination multiples of one equation are subtracted from the others to produce smaller systems until only one variable remains, and then values are back-substituted
+- Cramer's rule gives solutions in terms of ratios of n by n determinants
+- Cramer's rule is a disaster, and elimination always used
+- Elimination has four deeper aspects
+    - Interpretation as LU factorization of coefficient matrix essential for theory
+    - Identification of problems due to disordered equations, or zero or infinitely many solutions
+    - Rough number of operations
+    - Sensitivity to round off error
+    
+### 1.2 Example of Gaussian Elimination
+
+- The leading coefficient of the equation that is being subtracted from the others is called the pivot
+- The technique finds a unique solution iff none of the pivots are zero
+- Ignoring the right-hand side of the equations, subtracting one equation from the another requires n operations, one to find the multiple required, and n - 1 to find the remaining coefficients (counting multiplication-subtraction as a single operation)
+- There are n - 1 equations to subtract from, so each elimination step takes n(n - 1) operations
+- Each step produces a system with one fewer unknowns, so altogether the elimination process takes
+$$P = n(n - 1) + ... + 1(1 - 1)$$
+$$= \sum_{k = 1}^n k^2 - \sum_{k = 1}^n k$$
+$$ = \frac{1}{3}n\left(n + \frac{1}{2}\right)(n + 1) - \frac{1}{2}n(n + 1)$$
+$$= \frac{n^3 - n}{3}$$
+steps
+- The closed form for $\sum_{k = 1}^n k^2$ is easy to prove, but apparently not derivable by any perfectly general method
+- When n is large the number of steps is well-approximated by $n^3/3$
+- Back-substitution takes one step for the first variable, two for the second, and so on, giving
+$$Q = \sum_{k = 1}^n k = \frac{n(n + 1)}{2} \approx \frac{n^2}{2}$$
+steps
+
+#### 1.3 Matrix notation and matrix multiplication
+
+- A linear system of n equations in m unknowns can be represented by 
+$$A \mathbf{x} = \mathbf{a_1} x_1 + ... + \mathbf{a_m} x_m = \mathbf{b},$$
+where 
+$$A = [\mathbf{a_1} . . . \mathbf{a_m}],$$
+$$\mathbf{a_1}, ..., \mathbf{a_m}, \mathbf{b} \in \mathbb{R}^n,$$
+and
+$$\mathbf{x} = [x_1 ... x_m]^T.$$
+- Matrix multiplication:
+    - The matrix product EA is the matrix satisfying $(EA)\mathbf{x} = E(A\mathbf{x})$ for all $\mathbf{x}$
+    - Each column of EA is a linear combination of the columns of E, given by the corresponding column of A
+    - Associativity - $(AB)C = A(BC)$
+    - Distributivity - $A(B + C) = AB + AC$ and $(A + B)C = AC + BC$
+    - Non-commutativity - $AB \ne BA$
+- The identity matrix I is the n by n matrix with ones on the main diagonal and zeros elsewhere such that $IA = AI = A$ for all matrices A
+
+#### 1.4 Gaussian elimination = Triangular factorization
+
+
+
+
+
+
+
+
+
